@@ -114,6 +114,7 @@
     preventmultitouchscrolling: true,
     disablemutationobserver:false,
     disableLazyResize: false,
+    disableRailH: false,
   };
 
   var browserdetected = false;
@@ -979,17 +980,18 @@
             "background": self.opt.background
           });
 
-          railh.append(cursor);
+          if (!this.opt.disableRailH) {
+              railh.append(cursor);
 
-          railh.visibility = true;
-          railh.scrollable = true;
+              railh.visibility = true;
+              railh.scrollable = true;
 
-          railh.align = (self.opt.railvalign == "top") ? 0 : 1;
+              railh.align = (self.opt.railvalign == "top") ? 0 : 1;
 
-          self.railh = railh;
+              self.railh = railh;
 
-          self.railh.drag = false;
-
+              self.railh.drag = false;
+          }
         }
 
         //
