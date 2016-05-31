@@ -2182,10 +2182,10 @@
       if (self.hasmousefocus && self.opt.autohidemode == "leave") return;
       self.cursortimeout = setTimeout(function() {
         if (!self.rail.active || !self.showonmouseevent) {
-          self.autohidedom.stop().animate({
+          self.autohidedom.stop().css({
             opacity: self.opt.cursoropacitymin
           });
-          if (self.zoom) self.zoom.stop().animate({
+          if (self.zoom) self.zoom.stop().css({
             opacity: self.opt.cursoropacitymin
           });
           self.cursoractive = false;
