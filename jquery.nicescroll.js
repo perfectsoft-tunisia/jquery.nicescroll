@@ -446,7 +446,7 @@
 					h: setAnimationFrame(function(){
 						self.delaylist[name].fn.call(self);
 					  self.delaylist[name] = false;
-					}, tm)
+					}, 0) // Always debounce 0 ms
 				};
 			}
 			self.delaylist[name].fn = fn;
@@ -1653,10 +1653,12 @@
               self.selectiondrag = false;
             };
             self.onselectiondrag = function(e) {
-              if (!self.selectiondrag) return;
-              if (self.hasTextSelected()) self.debounced("selectionscroll", function() {
-                checkSelectionScroll(e);
-              }, 250);
+              /* Causes maximum call stack exceeded */
+
+              // if (!self.selectiondrag) return;
+              // if (self.hasTextSelected()) self.debounced("selectionscroll", function() {
+              //   checkSelectionScroll(e);
+              // }, 250);
             };
 
 
