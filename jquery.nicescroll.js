@@ -793,6 +793,7 @@
         fn((cur >= pos) ? pg: -pg);//   (cur >= pos) ? fn(pg): fn(-pg);
       }
 
+      self.triggerScrollEnd();
     };
 
     self.hasanimationframe = (setAnimationFrame);
