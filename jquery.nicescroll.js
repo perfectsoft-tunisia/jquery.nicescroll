@@ -2758,6 +2758,8 @@
         }, 15);
       }
 
+      self.triggerScrollEnd();
+
       e.stopImmediatePropagation();
       return e.preventDefault();
     }
