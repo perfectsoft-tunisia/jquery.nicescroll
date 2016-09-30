@@ -793,6 +793,7 @@
         fn((cur >= pos) ? pg: -pg);//   (cur >= pos) ? fn(pg): fn(-pg);
       }
 
+      self.triggerScrollEnd();
     };
 
     self.hasanimationframe = (setAnimationFrame);
@@ -1944,14 +1945,14 @@
 
         self.bind(document, "keydown", function(e) {
           var ctrl = e.ctrlKey || false;
-          if (ctrl) self.wheelprevented = true;
+          if (ctrl && self) self.wheelprevented = true;
         });
         self.bind(document, "keyup", function(e) {
           var ctrl = e.ctrlKey || false;
-          if (!ctrl) self.wheelprevented = false;
+          if (!ctrl && self) self.wheelprevented = false;
         });
         self.bind(window,"blur",function(e){
-          self.wheelprevented = false;
+          if (self) self.wheelprevented = false;
         });
 
         self.bind(window, 'resize', self.lazyResize);
@@ -2756,6 +2757,8 @@
           }
         }, 15);
       }
+
+      self.triggerScrollEnd();
 
       e.stopImmediatePropagation();
       return e.preventDefault();
