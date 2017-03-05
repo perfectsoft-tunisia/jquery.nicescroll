@@ -1317,7 +1317,7 @@
             };
 
             self.ontouchend = function(e) {
-              if (!self.rail.drag) return true;
+              if (!self || !self.rail.drag) return true;
               if (self.rail.drag.pt == 2) {
                 if (e.pointerType && e.pointerType != 2 && e.pointerType != "touch") return false;
 
@@ -1516,7 +1516,7 @@
           };
 
           self.onmouseup = function(e) {
-            if (self.rail.drag) {
+            if (self && self.rail.drag) {
               if (self.rail.drag.pt != 1) return true;
 
               if (cap.hasmousecapture) document.releaseCapture();
@@ -1651,7 +1651,9 @@
             };
 
             self.onselectionend = function(e) {
-              self.selectiondrag = false;
+              if (self) {
+                self.selectiondrag = false;
+              }
             };
             self.onselectiondrag = function(e) {
               /* Causes maximum call stack exceeded */
@@ -2360,6 +2362,7 @@
 */
 
 //			if (!self.haswrapper&&self.opt.autohidemode!==false) self.hide();
+        if (!self) return;
 			if (!self.haswrapper && !self.opt.disableLazyResize) self.hide();
 			if (self.hlazyresize) clearTimeout(self.hlazyresize);
 			self.hlazyresize = setTimeout(function(){
